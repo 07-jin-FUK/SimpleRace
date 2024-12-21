@@ -163,10 +163,10 @@ function App() {
 
           // ランダムな動きを追加（生存者のみ適用）
           const randomAdjustment =
-            Math.random() > 0.8 ? 8 : Math.random() > 0.6 ? -8 : 0;
+            Math.random() > 0.8 ? 7 : Math.random() > 0.6 ? -7 : 0;
           return Math.min(
             goalPosition,
-            Math.max(0, pos + 8 + randomAdjustment)
+            Math.max(0, pos + 6 + randomAdjustment)
           );
         })
       );
