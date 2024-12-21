@@ -1,0 +1,634 @@
+/* 全体設定 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0 0;
+  padding: 0 0;
+  height: 100%;
+  background-image: url("/umi.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* タイトル画面 */
+.title-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  background-color: black;
+}
+
+.title-screen .title {
+  font-family: "Press Start 2P";
+  font-size: 3rem;
+  color: white;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* キャラクター選択画面 */
+.title {
+  font-family: "Press Start 2P";
+  font-size: 3rem;
+  color: rgb(19, 8, 0);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  /* 中央揃え */
+  margin-bottom: 20px;
+  /* 下に余白 */
+}
+
+.title2 {
+  font-family: "Press Start 2P";
+  font-size: 2rem;
+  color: rgb(19, 8, 0);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  /* 中央揃え */
+  margin-bottom: 20px;
+  /* 下に余白 */
+}
+
+.start-button {
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  color: white;
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  /* グラデーション */
+  border: none;
+  border-radius: 25px;
+  /* 丸みを帯びたデザイン */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  /* ボックスシャドウ */
+}
+
+.start-button:hover {
+  transform: translateY(-3px);
+  /* ホバー時に浮かぶ効果 */
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+  /* ホバー時のシャドウ強化 */
+}
+
+.start-button:active {
+  transform: translateY(2px);
+  /* クリック時に押し込まれる効果 */
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  /* クリック時のシャドウ */
+}
+
+.initial-screen {
+  text-align: center;
+
+}
+
+.player-setup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 20px 20px;
+  width: 100%;
+    max-width: 800p
+}
+
+.character-select-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.icon-selection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  /* 最小100px、最大1fr */
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  /* 最大幅を設定 */
+  margin-bottom: 20px;
+}
+
+.player-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  /* 子要素の絶対位置指定を有効化 */
+  border: 2px solid #007bff;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  height: 150px;
+  min-width: 150px;
+}
+
+.remove-player {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.remove-player:hover {
+  background: darkred;
+}
+
+.add-player {
+  font-size: 1.5rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.add-player:hover {
+  background-color: #218838;
+}
+
+/* レース画面 */
+.game-container {
+  margin-top: 20px;
+}
+
+.race-track {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  /* レース全体の高さ */
+  
+  overflow: hidden;
+  /* レーン外の要素を隠す */
+  background-color: #e0e0e0;
+}
+
+.track {
+  bottom: 0;
+  /* 各レーンの初期位置を設定 */
+  width: 100%;
+}
+
+.background {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background-image: url("/harappa.jpg");
+  /* レース背景 */
+  background-size: cover;
+  background-repeat: repeat-x;
+  transition: background-position 0.1s linear;
+}
+
+.race-track::after {
+  content: "";
+  position: absolute;
+  right: 50px;
+  top: 0;
+  bottom: 0;
+  width: 70px;
+  background: linear-gradient(to bottom, red, orange, yellow, green, blue, indigo, violet);
+  border-left: 5px solid black;
+  z-index: 2;
+}
+
+.player-label {
+  position: absolute;
+  left: -120px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  width: 100px;
+  text-align: right;
+}
+
+
+.player-icon {
+  width: 60px;
+  height: 60px;
+z-index: 3;
+  object-fit: contain;
+}
+
+
+/* フェードイン・アウトのアニメーション */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.player-icon.grayscale {
+  filter: grayscale(100%);
+  transform: scale(0.8);
+  /* 少し小さくする */
+  transition: all 0.3s ease;
+}
+
+
+.track.eliminated {
+  transition: left 1s ease-out, background-color 0.5s ease;
+  /* 左方向に移動 */
+}
+
+.player-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  transition: filter 0.5s ease, transform 0.5s ease;
+  /* 滑らかなモノクロ効果 */
+}
+
+.track .player-icon {
+  transition: filter 0.5s ease, transform 0.5s ease;
+  /* 視覚効果 */
+}
+
+.track.eliminated .player-icon {
+  filter: grayscale(100%);
+  /* モノクロ */
+  transform: scale(0.8);
+  /* サイズを縮小 */
+}
+
+
+.countdown {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  font-weight: bold;
+  color: #007bff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 1000;
+  animation: pulse 1s infinite alternate;
+  /* 拡大縮小のアニメーション */
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.winner-screen h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: gold;
+  text-shadow: 0 0 10px gold;
+}
+
+.winner-screen h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* 勝者画面 */
+.winner-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 1000;
+}
+
+.winner-icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.winner-screen h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.winner-screen h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.icon-selection-grid {
+  display: flex;
+  gap: 20px;
+  /* アイコン間の隙間 */
+  justify-content: center;
+  /* 横中央揃え */
+  align-items: center;
+  /* 縦中央揃え */
+  margin-bottom: 20px;
+}
+
+.icon-option {
+  width: 150px;  /* 固定幅 */
+  height: 150px;
+  /* 固定高さ */
+
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.icon-option:hover {
+  transform: scale(1.1);
+  /* ホバー時のズーム効果 */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  /* 中央揃え */
+  gap: 20px;
+  /* ボタン間の間隔 */
+  margin-top: 20px;
+  /* 上に余白 */
+}
+
+.add-player {
+  font-size: 1.5rem;
+  color: white;
+  background: linear-gradient(90deg, #28a745, #85d096);
+  /* 緑系のグラデーション */
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-player:hover {
+  transform: translateY(-3px);
+  /* ホバー時の浮き上がり */
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.add-player:active {
+  transform: translateY(2px);
+  /* クリック時の押し込み */
+}
+
+.start-button {
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  color: white;
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  /* オレンジ系のグラデーション */
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.start-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.start-button:active {
+  transform: translateY(2px);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.name-input {
+  width: 90%;
+  /* 入力欄をボックス内に収める */
+  max-width: 180px;
+  /* 最大幅を設定 */
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.name-input:focus {
+  border-color: #0056b3;
+  /* フォーカス時の色変更 */
+  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+  /* フォーカス時の外枠 */
+  outline: none;
+  /* デフォルトのアウトラインを非表示 */
+}
+
+.preview-icon {
+  width: 100%;
+  /* 枠の幅に合わせる */
+  height: auto;
+  /* 高さを自動調整 */
+  max-height: 70px;
+  /* 最大高さを制限 */
+  object-fit: contain;
+  /* 内容が枠内に収まるよう調整 */
+  margin-top: 10px;
+}
+
+
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.track {
+  position: absolute;
+  width: 100%;
+  /* 各レーンの幅を適用 */
+  height: 80px;
+  /* レーンの高さ */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.5s ease, left 0.5s ease;
+  /* 滑らかな移動 */
+}
+
+.track.eliminated {
+  background-color: rgba(0, 0, 0, 0.8);
+  /* レーンを黒くする */
+  color: white;
+  /* 文字を白くする */
+  filter: grayscale(100%);
+  /* キャラクターをモノクロ化 */
+  position: absolute;
+  /* レーンの位置を維持 */
+  transition: left 1s ease-out, background-color 0.5s ease;
+  /* スムーズな戻り */
+}
+
+.track.eliminated .eliminated-message {
+  position: absolute;
+  left: 100px;
+  /* キャラクターの右側に表示 */
+  top: 50%;
+  /* レーン内で縦中央揃え */
+  transform: translateY(-50%);
+  /* 縦方向の調整 */
+  font-size: 4rem;
+  color: red;
+  font-weight: bold;
+  animation: fadeIn 1s ease;
+  /* スライドイン効果 */
+  z-index: 5;
+}
+
+/* 脱落メッセージのフェードイン */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+
+  }
+
+  to {
+    opacity: 1;
+
+  }
+}
+
+
+@keyframes slidein {
+  0% {
+  
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* 障害物スタイル */
+.hazard.hole {
+  width: 50px;
+  height: 50px;
+  background-color: black;
+  border-radius: 50%;
+}
+
+.hazard.rock {
+  width: 40px;
+  height: 40px;
+  background-color: gray;
+  border-radius: 20%;
+}
+
+.hazard.spike {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.track.winner {
+  background-color: rgba(255, 215, 0, 0.8);
+  /* ゴールドの背景 */
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.9);
+  /* ゴールドの光 */
+  animation: winnerPulse 1s infinite alternate;
+  /* 光のパルスアニメーション */
+}
+
+@keyframes winnerPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  }
+
+  100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+  }
+}
+
+.restart-button {
+  padding: 15px 40px;
+  font-size: 1.5rem;
+  color: white;
+  background: linear-gradient(90deg, #007bff, #00d4ff);
+  /* 青からシアンのグラデーション */
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), 0px 0px 10px rgba(0, 212, 255, 0.5);
+  /* ボタンの光 */
+}
+
+.restart-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3), 0px 0px 15px rgba(0, 212, 255, 0.8);
+  /* ホバー時の光を強化 */
+}
+
+.restart-button:active {
+  transform: translateY(2px);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2), 0px 0px 8px rgba(0, 212, 255, 0.6);
+  /* クリック時の光を抑える */
+}
+
+.restart-button:focus {
+  outline: none;
+  /* デフォルトのフォーカス枠を非表示 */
+}
