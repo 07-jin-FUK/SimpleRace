@@ -158,15 +158,15 @@ function App() {
 
           // 勝者の場合、加速してゴールへ向かう
           if (i === winnerIndex && elapsedTime > 18000) {
-            return Math.min(goalPosition, pos + 25); // 勝者は加速
+            return Math.min(goalPosition, pos + 40); // 勝者は加速
           }
 
           // ランダムな動きを追加（生存者のみ適用）
           const randomAdjustment =
-            Math.random() > 0.8 ? 6 : Math.random() > 0.6 ? -6 : 0;
+            Math.random() > 0.8 ? 8 : Math.random() > 0.6 ? -8 : 0;
           return Math.min(
             goalPosition,
-            Math.max(0, pos + 4 + randomAdjustment)
+            Math.max(0, pos + 8 + randomAdjustment)
           );
         })
       );
